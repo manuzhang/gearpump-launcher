@@ -47,7 +47,8 @@ case "$COMMAND" in
 drpc.servers:
   - `ip route | awk '/default/ {print $3}'`
 YAML
-    java -server -Xmx768m -cp "$LIB_HOME"/*:"$LIB_HOME"/storm/* backtype.storm.daemon.drpc
+    nohup java -server -Xmx768m -cp "$LIB_HOME"/*:"$LIB_HOME"/storm/* backtype.storm.daemon.drpc &
+    nohup sh "$SUT_HOME"/bin/storm nimbus -output "$SUT_HOME"/storm.yaml &
     ;;
   *)
     cat <<- USAGE
